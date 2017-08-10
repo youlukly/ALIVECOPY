@@ -1,0 +1,4 @@
+BaseWeaponType,ResourcePath,Name,Type,ActorType,Index,Defence,HP,HpIncrease,DefenceIncrease,DamageIncrease,AttackTypeDescription,AttackRotateSpeed,AttackStanceTime,TargettingRange,RotateSpeed,MaxSpeed,Accel,Scale
+AndroidWeaponType_Railgun,IronFist,?? ??,AndroidType_IronFist,ActorType_IronFist,0,0,100,10,0.1,0.1,???,5,1.5,10,40,4,9,1
+AndroidWeaponType_Railgun,FireBear,? ?,AndroidType_FireBear,ActorType_FireBear,1,0,125,13,0.1,0.2,???,4,0.5,6,40,6,12,1
+AndroidWeaponType_Railgun,BlackKite,? ?,AndroidType_BlackKite,ActorType_BlackKite,2,0,80,8,0.1,0.3,???,4,0.5,10,40,7,12,1
