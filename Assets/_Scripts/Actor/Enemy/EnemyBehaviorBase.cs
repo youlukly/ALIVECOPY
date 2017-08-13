@@ -10,7 +10,7 @@ public abstract class EnemyBehaviorBase : ScriptableObject
         this.enemy = enemy;
     }
 
-    public abstract void Excute();
+    public abstract void Act();
 
-    public abstract void ExcuteFX();
+    public abstract void Effect();
 }

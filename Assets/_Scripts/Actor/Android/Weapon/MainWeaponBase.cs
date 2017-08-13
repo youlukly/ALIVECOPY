@@ -2,26 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainWeaponBase : ScriptableObject
+public abstract class MainWeaponBase : ScriptableObject
 {
-    private MainWeaponType type;
-    private BulletType bulletType;
-    private ActorType fxType;
-    private string bulletPrefabName;
-    private float ammo;
-    private float recoveryAmmo;
-    private float recoveryAccelMax;
-    private string soundRscName;
-    private float distance;
-    private float angle;
-    private int damage;
-    private float fireSpeed;
-    private float damageMinRate;
-    private float damageMaxRate;
-    private float criticalChance;
-    private float criticalDamageRate;
-    private float hitTime;
-    
+    [SerializeField] private MainWeaponType type;
+    [SerializeField] private BulletType bulletType;
+    [SerializeField] private ActorType fxType;
+    [SerializeField] private string bulletPrefabName;
+    [SerializeField] private float ammo;
+    [SerializeField] private float recoveryAmmo;
+    [SerializeField] private float recoveryAccelMax;
+    [SerializeField] private string soundRscName;
+    [SerializeField] private float distance;
+    [SerializeField] private float angle;
+    [SerializeField] private int damage;
+    [SerializeField] private float fireSpeed;
+    [SerializeField] private float damageMinRate;
+    [SerializeField] private float damageMaxRate;
+    [SerializeField] private float criticalChance;
+    [SerializeField] private float criticalDamageRate;
+    [SerializeField] private float hitTime;
+
+    protected BulletManager bulletManager;
+    protected AliveAndroid android;
+
+    public virtual void Init(AliveAndroid android)
+    {
+        bulletManager = InstanceManager.instance.BulletManager;
+        this.android = android;
+    }
+
+    public abstract void ShootingMethod();
+
+    public abstract void ShootFX();
+
     public MainWeaponType Type
     {
         get
@@ -228,35 +241,5 @@ public class MainWeaponBase : ScriptableObject
         {
             hitTime = value;
         }
-    }
-
-    public string BulletPrefabName
-    {
-        get
-        {
-            return bulletPrefabName;
-        }
-
-        set
-        {
-            bulletPrefabName = value;
-        }
-    }
-
-
-
-    public void Init(AliveAndroid android)
-    {
-
-    }
-
-    public void ShootingMethod()
-    {
-
-    }
-
-    public void ShootFX()
-    {
-
     }
 }

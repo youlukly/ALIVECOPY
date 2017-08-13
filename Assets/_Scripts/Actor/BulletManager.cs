@@ -5,6 +5,7 @@ using Ultimate;
 
 public class BulletManager : AliveBehavior
 {
+    [SerializeField] private int poolingCount = 50;
     public void Init()
     {
         contents.LoadResource(Tags.Bullets);

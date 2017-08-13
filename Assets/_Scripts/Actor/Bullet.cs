@@ -23,9 +23,13 @@ public class Bullet : Actor
         }
     }
 
-    public virtual void Init(float damage, Vector3 pos, Vector3 direction)
+    public virtual void Init(Vector3 pos, Vector3 direction)
     {
-
+        transform.position = pos;
+        startPos = pos;
+        this.direction = direction;
+        transform.forward = direction;
+        GameManager.instance.sceneManager.currentScene.AddUpdatableInstance(this);
     }
 
     public override void ManualUpdate()

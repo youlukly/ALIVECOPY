@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ultimate;
 
-public class AndroidManager : MonoBehaviour
+public class AndroidManager : AliveBehavior
 {
     [SerializeField] private SubWeaponType subWeapon;
 
-    private GameManager game;
-
-    private void Awake()
-    {
-        game = GameManager.instance;
-    }
+    public AliveAndroid android { private set; get; }
 
     public void Init()
     {
@@ -33,11 +28,9 @@ public class AndroidManager : MonoBehaviour
         return null;
     }
 
-    public AliveAndroid CreateAndroid()
+    public void CreateAndroid()
     {
-        AliveAndroid android = UGL.contentsManager.CreateInstance<AliveAndroid>("Androids");
-        android.Init();
-
-        return android;
+        android = UGL.contentsManager.CreateInstance<AliveAndroid>("Androids");
+        android.transform.position = instanceManager.SpaceShipManager.GetAndroidCreatePoint();
     }
 }

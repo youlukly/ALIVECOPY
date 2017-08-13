@@ -12,6 +12,7 @@ public class GameManager
     public SceneManager sceneManager { private set; get; }
     public InputManager inputManager { private set; get; }
     public AliveAccount account { private set; get; }
+    public PlaySceneManager playScene { private set; get; }
 
     private GameManager()
     {
@@ -20,5 +21,10 @@ public class GameManager
         inputManager = UGL.inputManager;
 
         account = new AliveAccount();
+    }
+
+    public void SetPlayScene(PlaySceneManager playScene)
+    {
+        this.playScene = playScene;
     }
 }

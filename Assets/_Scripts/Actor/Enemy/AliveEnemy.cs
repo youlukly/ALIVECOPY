@@ -5,7 +5,7 @@ using Ultimate;
 
 public class AliveEnemy : Actor
 {
-    public Actor target { private get; set; }
+    public Actor target { private set; get; }
 
     public EnemyData Data
     {
@@ -40,7 +40,7 @@ public class AliveEnemy : Actor
     {
         base.Init();
 
-        target = UniqueActors.instance.GetInstance(data.FirstTargetType);
+        target = InstanceManager.instance.GetInstance(data.FirstTargetType);
         direction = Vector3.forward;
         agent.updateRotation = false;
 
@@ -74,8 +74,8 @@ public class AliveEnemy : Actor
         Debug.Log("Attack");
         if (!attack)
             return;
-        attack.Excute();
-        attack.ExcuteFX();
+        attack.Act();
+        attack.Effect();
     }
 
     public void SetTarget(Actor target)

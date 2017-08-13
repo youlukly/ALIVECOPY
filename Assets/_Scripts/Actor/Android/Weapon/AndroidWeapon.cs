@@ -9,41 +9,29 @@ public class AndroidWeapon : AliveBehavior
 
     [SerializeField] private MainWeaponBase mainWeapon;
 
-    private AndroidManager androidManager;
-
     public AndroidSubWeapon subWeapon { private get; set; }
     public bool overHitting { private get; set; }
     public float nowAmmo { private get; set; }
-    protected GameManager game { private set; get; }
     protected float nowRecoveryAccel;
 
     private AliveAndroid android;
-    private ContentsManager contents;
     private bool coolDown = false;
     private float coolDownNowTime = 0.0f;
 
     public void Init()
     {
-        game = GameManager.instance;
-        androidManager = FindObjectOfType<AndroidManager>();
-
         if (!mainWeapon)
         {
             Debug.LogError("Not Serialized Main Weapon");
             return;
         }
 
-        contents = UGL.contentsManager;
-
         android = GetComponent<AliveAndroid>();
         mainWeapon.Init(android);
 
         nowAmmo = mainWeapon.Ammo;
 
-        contents.LoadResource(Tags.Bullets);
-        contents.CreateInstancePool(new InstancePool(Tags.Bullets, contents.GetResource(mainWeapon.BulletPrefabName), 50));
-
-        SubWeaponType subWeaponType = androidManager.GetSubWeaponType();
+        SubWeaponType subWeaponType = instanceManager.AndroidManager.GetSubWeaponType();
 
         if (game.account != null)
             subWeaponType = game.account.GetSelectedSubWeapon();
@@ -51,7 +39,7 @@ public class AndroidWeapon : AliveBehavior
         if (subWeaponType == SubWeaponType.SubWeaponType_None)
             return;
 
-        androidManager.CreateSubWeapon(subWeaponType).Init();
+        instanceManager.AndroidManager.CreateSubWeapon(subWeaponType).Init();
 
     }
 
